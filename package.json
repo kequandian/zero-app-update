@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "umi dev",
+    "build": "set CLEAR_CONSOLE=none&& set BASE_URL=/android_asset/www/&& umi build",
+    "buildapp": "umi build",
+    "lint": "eslint --ext .js src test"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "dva": "^2.1.0",
+    "antd-mobile": "^2.2.2",
+    "kqd-utils": "git+ssh://github@zele.pro:/home/github/zero/components/utils.git",
+    "umi": "^2.0.0-beta.16",
+    "umi-plugin-react": "^1.0.0-beta.16",
+    "react-photoswipe": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-umi": "^0.1.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.12.0",
+    "mockjs": "^1.0.1-beta3"
+  }
+}

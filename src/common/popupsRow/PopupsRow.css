@@ -1,0 +1,52 @@
+
+.popups{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 15px;
+    height: 44px;
+    background-color: #fff;
+    vertical-align: middle;
+    overflow: hidden;
+    transition: background-color 200ms;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.label{
+  -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0.14rem;
+    padding-bottom: 0.14rem;
+}
+
+.display{
+  text-align: right;
+  box-sizing: border-box;
+  color:#888888;
+  display:block;
+  outline:0;
+  border: none;
+  font-size: 16px;
+}
+
+.itemArrow{
+  /*width: 3.25em;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.1em;
+  padding-right: 0.45em;
+  margin-right: 0.3em;
+}

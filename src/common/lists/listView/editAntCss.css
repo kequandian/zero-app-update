@@ -1,0 +1,11 @@
+:global(.am-list-body){
+  border-top:0;
+}
+
+:global(.am-list-body:after){
+  border-bottom:0;
+}
+
+:global(.am-list-footer){
+  padding:0;
+}

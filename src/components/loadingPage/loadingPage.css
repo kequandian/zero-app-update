@@ -1,0 +1,150 @@
+/* old css
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+position: 'absolute',
+left: 0,
+right: 0,
+top: 0,
+bottom: 0,
+margin: 'auto',
+ */
+
+:root{
+  --primary-color: #c28324;
+}
+
+ .container{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #fff;
+ }
+
+ .loader {
+    font-size: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    text-indent: -9999rem;
+    animation: load-effect 1s infinite linear;
+ }
+
+ @keyframes load-effect {
+  0%{
+   box-shadow:
+    /*
+     0:左移3em
+     -3em:下移2em
+     0:模糊距离0，即纯色
+     .2em:外扩.2em
+     #FFF:白色
+    */
+    0 -3em 0 .2em var(--primary-color),/*上*/
+    2em -2em 0 0 var(--primary-color),/*右上*/
+    3em 0 0 -.5em var(--primary-color),/*右*/
+    2em 2em 0 -.5em var(--primary-color),/*右下*/
+    0 3em 0 -.5em var(--primary-color), /*下*/
+    -2em 2em 0 -.5em var(--primary-color), /*左下*/
+    -3em 0 0 -.5em var(--primary-color), /*左*/
+    -2em -2em 0 0 var(--primary-color);/*左上*/
+  }
+
+  12.5% {
+   box-shadow:
+    0 -3em 0 0 var(--primary-color),
+    2em -2em 0 .2em var(--primary-color),
+    3em 0 0 0 var(--primary-color),
+    2em 2em 0 -.5em var(--primary-color),
+    0 3em 0 -.5em var(--primary-color),
+    -2em 2em 0 -.5em var(--primary-color),
+    -3em 0 0 -.5em var(--primary-color),
+    -2em -2em 0 -.5em var(--primary-color);
+  }
+
+  25% {
+   box-shadow:
+      0 -3em 0 -.5em var(--primary-color),
+      2em -2em 0 0 var(--primary-color),
+      3em 0 0 .2em var(--primary-color),
+      2em 2em 0 0 var(--primary-color),
+      0 3em 0 -.5em var(--primary-color),
+      -2em 2em 0 -.5em var(--primary-color),
+      -3em 0 0 -.5em var(--primary-color),
+      -2em -2em 0 -.5em var(--primary-color);
+  }
+
+  37.5% {
+    box-shadow:
+       0 -3em 0 -.5em var(--primary-color),
+       2em -2em 0 -.5em var(--primary-color),
+       3em 0 0 0 var(--primary-color),
+       2em 2em 0 .2em var(--primary-color),
+       0 3em 0 0 var(--primary-color),
+       -2em 2em 0 -.5em var(--primary-color),
+       -3em 0 0 -.5em var(--primary-color),
+       -2em -2em 0 -.5em var(--primary-color);
+   }
+
+   50% {
+    box-shadow:
+       0 -3em 0 -.5em var(--primary-color),
+       2em -2em 0 -.5em var(--primary-color),
+       3em 0 0 -.5em var(--primary-color),
+       2em 2em 0 0 var(--primary-color),
+       0 3em 0 .2em var(--primary-color),
+       -2em 2em 0 0 var(--primary-color),
+       -3em 0 0 -.5em var(--primary-color),
+       -2em -2em 0 -.5em var(--primary-color);
+   }
+
+   62.5% {
+    box-shadow:
+       0 -3em 0 -.5em var(--primary-color),
+       2em -2em 0 -.5em var(--primary-color),
+       3em 0 0 -.5em var(--primary-color),
+       2em 2em 0 -.5em var(--primary-color),
+       0 3em 0 0 var(--primary-color),
+       -2em 2em 0 .2em var(--primary-color),
+       -3em 0 0 0 var(--primary-color),
+       -2em -2em 0 -.5em var(--primary-color);
+   }
+
+   75% {
+    box-shadow:
+       0 -3em 0 -.5em var(--primary-color),
+       2em -2em 0 -.5em var(--primary-color),
+       3em 0 0 -.5em var(--primary-color),
+       2em 2em 0 -.5em var(--primary-color),
+       0 3em 0 -.5em var(--primary-color),
+       -2em 2em 0 0 var(--primary-color),
+       -3em 0 0 .2em var(--primary-color),
+       -2em -2em 0 0 var(--primary-color);
+   }
+
+   87.5% {
+    box-shadow:
+       0 -3em 0 0 var(--primary-color),
+       2em -2em 0 -.5em var(--primary-color),
+       3em 0 0 -.5em var(--primary-color),
+       2em 2em 0 -.5em var(--primary-color),
+       0 3em 0 -.5em var(--primary-color),
+       -2em 2em 0 0 var(--primary-color),
+       -3em 0 0 0 var(--primary-color),
+       -2em -2em 0 .2em var(--primary-color);
+   }
+
+   100% {
+    box-shadow:
+       0 -3em 0 .2em var(--primary-color),
+       2em -2em 0 0 var(--primary-color),
+       3em 0 0 -.5em var(--primary-color),
+       2em 2em 0 -.5em var(--primary-color),
+       0 3em 0 -.5em var(--primary-color),
+       -2em 2em 0 -.5em var(--primary-color),
+       -3em 0 0 -.5em var(--primary-color),
+       -2em -2em 0 0 var(--primary-color);
+   }
+}

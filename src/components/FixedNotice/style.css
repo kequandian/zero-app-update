@@ -1,0 +1,14 @@
+.noticeContainer{
+  height: 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba(194, 131, 46, 0.3);
+  padding: 0 0.6em;
+  overflow: hidden;
+}
+
+.noticeContainer{
+  font-size: 13px;
+  color:#fff;
+}
