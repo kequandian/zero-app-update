@@ -26,11 +26,11 @@ export default {
   'publicPath': './static/',
   'proxy': {
       '/api': {
-        'target': 'http://120.79.77.207:8080',
+        'target': 'http://127.0.0.1:8080',
         'changeOrigin': true
       },
       '/rest': {
-        'target': 'http://120.79.77.207:8080',
+        'target': 'http://127.0.0.1:8080',
         'changeOrigin': true
       }
   }
