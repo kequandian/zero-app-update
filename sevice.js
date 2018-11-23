@@ -26,7 +26,13 @@ app.use('/', express.static('./dist'));
 // eg:将/api/test 代理到 ${HOST}/api/test
 app.use(proxy('/api', { target: HOST }));
 
+// req.body 解析
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // 监听端口
 app.listen(app.get('port'), () => {
   console.log(`server running @${app.get('port')}`);
 });
+
+module.exports = app;
