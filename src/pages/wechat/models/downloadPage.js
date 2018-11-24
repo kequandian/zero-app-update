@@ -16,7 +16,6 @@ export default {
       history.listen(location => {
         if(location.pathname === '/wechat') {
 
-          console.log('1111');
           dispatch({
             type: 'query',
             payload:{
@@ -29,22 +28,52 @@ export default {
 
   effects: {
     *query({ payload }, { call, put }) {
-      const { status_code, data, message } = yield call( services.getDownloadInfoService, {});
-      if(status_code === 0){
+      const response = yield call( services.getDownloadInfoService, {});
+
+      console.log('response',response);
+      if(response.code === 200){
         const newData = {
-          ...data,
-          iconUrl:data.iconUrl?data.iconUrl:logoImg,
+          ...response.data,
+          iconUrl:response.data.iconUrl?response.data.iconUrl:logoImg,
           downloadBtnText: '立即下载',
         }
-        console.log('newData', JSON.stringify(newData));
         yield put({
           type: 'querySuccess',
           payload: {
-            data,
+            data:newData,
           }
         })
       }else{
-        console.log('获取下载详情信息失败', message);
+        console.log('获取下载详情信息失败');
+      }
+    },
+
+    //下载方法
+    *downloadMetod({ payload }, { call, put }) {
+      const { platformType, downloadUrl } = payload;
+      if(platformType == 'ANDROID'){
+        if(downloadUrl){
+          window.location.href = downloadUrl
+        }else{
+          yield put({
+            type:'querySuccess',
+            payload:{
+              islinkOfNull:true
+            }
+          })
+        }
+      }
+      if(platformType == 'IOS'){
+        if(downloadUrl){
+          window.location.href = downloadUrl
+        }else{
+          yield put({
+            type:'querySuccess',
+            payload:{
+              islinkOfNull:true
+            }
+          })
+        }
       }
     },
 

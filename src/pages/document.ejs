@@ -18,8 +18,6 @@
   </div>
 </div>
 
-<script type="text/javascript" src="cordova.js"></script>
-
 <script>
   if(window.location.host.indexOf('localhost') < 0 ){
     var script = document.createElement('script');
@@ -29,45 +27,6 @@
   document.title = 'Muaskin智慧美妆';
 </script>
 
-<script src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
-<script>
-  window.qq = qq;
-  window.TXMapKey='36TBZ-G3JKP-UGXDX-VVSZW-AXJD2-J7BAY';
-</script>
-<script>
-function onBridgeReady(data){
-  if(data && data.appId) {
-    WeixinJSBridge.invoke(
-       'getBrandWCPayRequest', {
-          "appId":data.appId || '',
-          "timeStamp":data.timeStamp || '',
-          "nonceStr":data.nonceStr || '',
-          "package":data.package || '',
-          "signType":data.signType || '',
-          "paySign":data.paySign || ''
-       },
-       function(res){
-       if(res.err_msg == "get_brand_wcpay_request:ok" ){
-           window.location.href = data.url;
-       }else {
-          if(data.url.indexOf('?') > -1){
-            window.location.href = data.url + '&payResult=NO';
-          } else {
-            window.location.href = data.url + '?payResult=NO';
-          }
-       }
-    });
-  }
-}
-if (typeof WeixinJSBridge == "undefined"){
-   if( document.addEventListener ){
-       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-   }else if (document.attachEvent){
-       document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-   }
-}
-window.onBridgeReady = onBridgeReady;
 </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "umi dev node index.js",
+    "start": "umi dev",
     "build": "set CLEAR_CONSOLE=none&& set BASE_URL=/android_asset/www/&& umi build",
     "buildapp": "umi build",
     "lint": "eslint --ext .js src test"

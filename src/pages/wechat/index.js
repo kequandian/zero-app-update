@@ -7,11 +7,32 @@ import ParseHtmlJson from '../../common/parseHtmlJson/ParseHtmlJson';
 function Index ({ dispatch, loading = false, downloadPage }){
 
   const { data, islinkOfNull } = downloadPage;
-
-  const platformValue = checkUserAgent.androidOrIos() === 'ANDROID' ? '立即下载': '去 App Store下载';
+  const p = checkUserAgent.androidOrIos();
+  const downloadBtnText = p == 'ANDROID' ? '立即下载' : p == 'IOS' ? '去 App Store下载' : '未知机型';
 
   const parseHtmlJsonProps = {
     htmlJson:data.description
+  }
+
+  function downloadClick (value){
+    if(value && value.downloadUrl && value.downloadUrl.length > 0){
+      dispatch({
+        type:'downloadPage/downloadMetod',
+        payload:{
+          platformType: p,
+          downloadUrl:value.downloadUrl[0].url
+        }
+      })
+    }else{
+      console.log('下载链接异常');
+    }
+  }
+
+  const logoImg = (value) => {
+    if(value && value.iconUrl && value.iconUrl.length > 0){
+      return (<img src={value.iconUrl[0].url} alt="logo" />);
+    }
+    return ''
   }
 
   return (
@@ -19,7 +40,7 @@ function Index ({ dispatch, loading = false, downloadPage }){
       {!islinkOfNull?(
         <div style={{ display: 'flex', flexDirection:'column', height:'100%', backgroundColor:'#FFFFFF'}}>
     		  <div className={styles.header}>
-    			   <img src={data.iconUrl} alt="logo" />
+            {logoImg(data)}
     		  </div>
 
     		  <div style={{color:'#000000',fontSize:'18px', textAlign: 'center', padding:'7px 0', marginTop:'13px'}}>
@@ -32,8 +53,9 @@ function Index ({ dispatch, loading = false, downloadPage }){
     		  </div>
 
     		  <div className={styles.auiTabBar}>
-      			<div className={styles.auiTabBarBtn}>
-      			  {data.downloadBtnText}
+      			<div className={styles.auiTabBarBtn}
+              onClick={() => downloadBtnText != '未知机型' ? downloadClick(data) : {}}>
+      			  {downloadBtnText}
       			</div>
     		  </div>
 
