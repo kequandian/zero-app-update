@@ -1,13 +1,12 @@
 import { connect } from 'dva';
 import router from 'umi/router';
 import styles from './index.css';
-import checkUserAgent from '../../utils/checkUserAgent';
 import ParseHtmlJson from '../../common/parseHtmlJson/ParseHtmlJson';
 
 function Index ({ dispatch, loading = false, downloadPage }){
 
   const { data, islinkOfNull } = downloadPage;
-  const p = checkUserAgent.androidOrIos();
+  const p = window.MC.PLATFORM_TYPE;
   const downloadBtnText = p == 'ANDROID' ? '立即下载' : p == 'IOS' ? '去 App Store下载' : '未知机型';
 
   const parseHtmlJsonProps = {
@@ -15,17 +14,35 @@ function Index ({ dispatch, loading = false, downloadPage }){
   }
 
   function downloadClick (value){
-    if(value && value.downloadUrl && value.downloadUrl.length > 0){
-      dispatch({
-        type:'downloadPage/downloadMetod',
-        payload:{
-          platformType: p,
-          downloadUrl:value.downloadUrl[0].url
-        }
-      })
-    }else{
-      console.log('下载链接异常');
+    console.log('appleStoreLink', value.appleStoreLink);
+    if(p == 'ANDROID'){
+      if(value && value.downloadUrl && value.downloadUrl.length > 0){
+
+        dispatch({
+          type:'downloadPage/downloadMetod',
+          payload:{
+            platformType: p,
+            downloadUrl:value.downloadUrl[0].url
+          }
+        })
+      }else{
+        console.log('下载链接异常');
+      }
+    }else if(p == 'IOS'){
+      if(value && value.appleStoreLink){
+
+        dispatch({
+          type:'downloadPage/downloadMetod',
+          payload:{
+            platformType: p,
+            downloadUrl:value.appleStoreLink
+          }
+        })
+      }else{
+        console.log('下载链接异常');
+      }
     }
+
   }
 
   const logoImg = (value) => {

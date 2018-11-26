@@ -21,6 +21,8 @@ if (process.env.NODE_ENV === 'development') {
   // window.MC.HOST = 'http://112.74.26.228:10080';
   window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
 
+  window.MC.PLATFORM_TYPE = checkUserAgent.androidOrIos();
+
   //这里save token
   saveToken(locationToken)
 }else{
