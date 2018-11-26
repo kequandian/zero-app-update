@@ -30,7 +30,6 @@ function Index ({ dispatch, loading = false, downloadPage }){
       }
     }else if(p == 'IOS'){
       if(value && value.appleStoreLink){
-
         dispatch({
           type:'downloadPage/downloadMetod',
           payload:{
@@ -52,6 +51,19 @@ function Index ({ dispatch, loading = false, downloadPage }){
     return ''
   }
 
+  const showAppSize = (value) =>{
+    if(value && value.downloadUrl && value.downloadUrl.length > 0){
+      const size = Math.floor(value.downloadUrl[0].size / 1024 / 1024 * 100) / 100;
+      return (
+        <span style={{marginLeft:'12px'}}>
+          {size}MB
+        </span>
+      )
+    }else{
+      console.log('下载链接异常');
+    }
+  }
+
   return (
     <>
       {!islinkOfNull?(
@@ -66,7 +78,7 @@ function Index ({ dispatch, loading = false, downloadPage }){
 
     		  <div style={{fontSize:'14px', textAlign:'center', padding:'7px 0', color:'#505050'}}>
       			<span>{data.downloads}次下载</span>
-      			<span style={{marginLeft:'12px'}}>{data.size}MB</span>
+            {showAppSize(data)}
     		  </div>
 
     		  <div className={styles.auiTabBar}>
