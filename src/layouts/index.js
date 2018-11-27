@@ -27,7 +27,6 @@ if (process.env.NODE_ENV === 'development') {
   saveToken(locationToken)
 }else{
   window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
-  window.MC.PLATFORM_TYPE = checkUserAgent.androidOrIos();
 }
 
 
@@ -54,7 +53,9 @@ class Layout extends React.Component {
   }
 
   componentWillMount(){
-
+    if(checkUserAgent.isApp()){
+      window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
+    }
   }
 
   componentWillReceiveProps(newProps){

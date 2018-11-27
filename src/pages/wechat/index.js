@@ -2,11 +2,12 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import styles from './index.css';
 import ParseHtmlJson from '../../common/parseHtmlJson/ParseHtmlJson';
+import checkUserAgent from '../../utils/checkUserAgent';
 
 function Index ({ dispatch, loading = false, downloadPage }){
 
   const { data, islinkOfNull } = downloadPage;
-  const p = window.MC.PLATFORM_TYPE;
+  const p = checkUserAgent.androidOrIos();
   const downloadBtnText = p == 'ANDROID' ? '立即下载' : p == 'IOS' ? '去 App Store下载' : '未知机型';
 
   const parseHtmlJsonProps = {
