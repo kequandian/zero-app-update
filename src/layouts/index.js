@@ -16,17 +16,11 @@ if (process.env.NODE_ENV === 'development') {
     perms:[]
   }
   window.MC = { HOST: ""};
-  // window.MC.HOST = 'http://192.168.31.232:8081'
-  // window.MC.HOST = 'http://120.79.77.207:8080';
-  // window.MC.HOST = 'http://112.74.26.228:10080';
-  window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
 
   window.MC.PLATFORM_TYPE = checkUserAgent.androidOrIos();
 
   //这里save token
   saveToken(locationToken)
-}else{
-  window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
 }
 
 
@@ -53,29 +47,6 @@ class Layout extends React.Component {
   }
 
   componentWillMount(){
-    if(checkUserAgent.isApp()){
-      window.MC.SOBOT = '84fee9dfe79842d3b41a15dd4f079eda';
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if(prevProps){
-      alert("prevProps: " + JSON.stringify(prevProps))
-    }
-
-    if(prevState){
-      alert("prevState: " + JSON.stringify(prevState))
-    }
-  }
-
-  componentDidCatch(error, info){
-    if(error){
-      alert("error: " + JSON.stringify(error))
-    }
-
-    if(info){
-      alert("info: " + JSON.stringify(info))
-    }
   }
 
   componentWillReceiveProps(newProps){
@@ -105,7 +76,7 @@ class Layout extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.loading.global
+        // loading: state.loading.global
     };
 }
 export default connect(mapStateToProps)(withRouter(Index));
