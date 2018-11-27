@@ -7,5 +7,5 @@ window.MC.HOST = 'http://120.79.77.207:8080';
 console.log(window.MC);
 window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) {
     // TODO
-    alert(JSON.stringify(errorMessage))
+    console.log("window onerror: ",JSON.stringify(errorMessage))
 }
