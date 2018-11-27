@@ -14,7 +14,6 @@ function Index ({ dispatch, loading = false, downloadPage }){
   }
 
   function downloadClick (value){
-    console.log('appleStoreLink', value.appleStoreLink);
     if(p == 'ANDROID'){
       if(value && value.downloadUrl && value.downloadUrl.length > 0){
 
