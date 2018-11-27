@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-function Index({ children, location, dispatch, personalCenter,loading }) {
+function Index({ children, location, dispatch,loading }) {
 
   const layoutProps = {
     children,
@@ -105,8 +105,7 @@ class Layout extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        personalCenter:state.personalCenter,
-        // loading: state.loading.global,
+        loading: state.loading.global
     };
 }
 export default connect(mapStateToProps)(withRouter(Index));
