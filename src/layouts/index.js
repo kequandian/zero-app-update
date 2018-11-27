@@ -58,6 +58,26 @@ class Layout extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps){
+      alert("prevProps: " + JSON.stringify(prevProps))
+    }
+
+    if(prevState){
+      alert("prevState: " + JSON.stringify(prevState))
+    }
+  }
+
+  componentDidCatch(error, info){
+    if(error){
+      alert("error: " + JSON.stringify(error))
+    }
+
+    if(info){
+      alert("info: " + JSON.stringify(info))
+    }
+  }
+
   componentWillReceiveProps(newProps){
 
   }
