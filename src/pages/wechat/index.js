@@ -10,10 +10,6 @@ function Index ({ dispatch, loading = false, downloadPage }){
   const p = checkUserAgent.androidOrIos();
   const downloadBtnText = p == 'ANDROID' ? '立即下载' : p == 'IOS' ? '去 App Store下载' : '未知机型';
 
-  console.log('设备类型：', p);
-  alert("设备类型: " + p)
-  console.log('下载按钮文字：', downloadBtnText);
-  alert("下载按钮文字：: " + downloadBtnText)
   const parseHtmlJsonProps = {
     htmlJson:data.description
   }
