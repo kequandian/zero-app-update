@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:10px 0;
 }
 
 .auiTabBarBtn{
@@ -26,6 +25,7 @@
   border-radius: 8px;
   background-color: #c28324;
   color: white;
+  margin:10px 0;
 }
 
 .versionText{
@@ -35,9 +35,9 @@
 }
 
 .parseHtmlJsonBody{
-  flex: 1;
-  display: flex;
-  flex-direction:column;
+  /* flex: 1; */
+  /* display: flex; */
+  /* flex-direction:column; */
   background-color: #F6F7FB;
   padding: 8px 7px 0 7px;
 }

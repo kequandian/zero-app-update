@@ -76,7 +76,13 @@ function Index ({ dispatch, loading = false, downloadPage }){
             {data.name}
           </div>
 
-    		  <div style={{fontSize:'14px', textAlign:'center', padding:'7px 0', color:'#505050'}}>
+    		  <div style={{
+            fontSize:'14px',
+            textAlign:'center',
+            padding:'7px 0',
+            color:'#505050',
+            marginBottom: '10px'
+          }}>
       			<span>{data.downloads}次下载</span>
             {showAppSize(data)}
     		  </div>
