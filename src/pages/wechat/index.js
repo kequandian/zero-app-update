@@ -20,7 +20,7 @@ function Index ({ dispatch, loading = false, downloadPage }){
 
   function downloadClick (value){
     if(p == 'ANDROID'){
-      if(value && value.downloadUrl && value.downloadUrl.length > 0){
+      // if(value && value.downloadUrl && value.downloadUrl.length > 0){
 
         if(isWechat){
 
@@ -32,17 +32,19 @@ function Index ({ dispatch, loading = false, downloadPage }){
           })
 
         }else{
+          // const gwDownloadUrl = value.downloadUrl[0].url;
+          const gwDownloadUrl = 'http://120.79.77.207:8080/api/pub/download/apk'
           dispatch({
             type:'downloadPage/downloadMetod',
             payload:{
               platformType: p,
-              downloadUrl:value.downloadUrl[0].url
+              downloadUrl: gwDownloadUrl
             }
           })
         }
-      }else{
-        console.log('下载链接异常');
-      }
+      // }else{
+      //   console.log('下载链接异常');
+      // }
     }else if(p == 'IOS'){
       if(value && value.appleStoreLink){
         dispatch({
@@ -77,6 +79,15 @@ function Index ({ dispatch, loading = false, downloadPage }){
     }else{
       console.log('下载链接异常');
     }
+  }
+
+  const closeDownloadTips = () =>{
+    dispatch({
+      type:'downloadPage/querySuccess',
+      payload:{
+        showDownloadTipsModal:false
+      }
+    })
   }
 
   return (
@@ -128,7 +139,7 @@ function Index ({ dispatch, loading = false, downloadPage }){
 
       {showDownloadTipsModal?(
         <ToastModal showViewStatus={showDownloadTipsModal}>
-          <div className={styles.showDownloadTips}>
+          <div className={styles.showDownloadTips}  onClick={() => closeDownloadTips()}>
             <img src={downloadTips} alt=""/>
           </div>
         </ToastModal>
