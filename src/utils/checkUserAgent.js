@@ -54,10 +54,10 @@ export default {
       if(isAndroid || isiOS){
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          console.log('微信端');
+          // console.log('微信端');
           return false;
         }else{
-          console.log('app端');
+          // console.log('app端');
           return true;
         }
       }
@@ -77,6 +77,15 @@ export default {
     }
     return '';
   },
+
+  isWechat(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      return true;
+    } else {
+      return false
+    }
+  }
 
 
 }

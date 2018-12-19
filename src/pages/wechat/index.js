@@ -3,11 +3,15 @@ import router from 'umi/router';
 import styles from './index.css';
 import ParseHtmlJson from '../../common/parseHtmlJson/ParseHtmlJson';
 import checkUserAgent from '../../utils/checkUserAgent';
+import ToastModal from '../../common/modal/toastModal/ToastModal';
+
+import downloadTips from '../../assets/download-tips.png';
 
 function Index ({ dispatch, loading = false, downloadPage }){
 
-  const { data, islinkOfNull } = downloadPage;
+  const { data, islinkOfNull, showDownloadTipsModal } = downloadPage;
   const p = checkUserAgent.androidOrIos();
+  const isWechat = checkUserAgent.isWechat();
   const downloadBtnText = p == 'ANDROID' ? '立即下载' : p == 'IOS' ? '去 App Store下载' : '未知机型';
 
   const parseHtmlJsonProps = {
@@ -18,13 +22,24 @@ function Index ({ dispatch, loading = false, downloadPage }){
     if(p == 'ANDROID'){
       if(value && value.downloadUrl && value.downloadUrl.length > 0){
 
-        dispatch({
-          type:'downloadPage/downloadMetod',
-          payload:{
-            platformType: p,
-            downloadUrl:value.downloadUrl[0].url
-          }
-        })
+        if(isWechat){
+
+          dispatch({
+            type:'downloadPage/querySuccess',
+            payload:{
+              showDownloadTipsModal:true
+            }
+          })
+
+        }else{
+          dispatch({
+            type:'downloadPage/downloadMetod',
+            payload:{
+              platformType: p,
+              downloadUrl:value.downloadUrl[0].url
+            }
+          })
+        }
       }else{
         console.log('下载链接异常');
       }
@@ -110,6 +125,14 @@ function Index ({ dispatch, loading = false, downloadPage }){
       ):(
         <div className={styles.isNull}>即将上线，敬请期待</div>
       )}
+
+      {showDownloadTipsModal?(
+        <ToastModal showViewStatus={showDownloadTipsModal}>
+          <div className={styles.showDownloadTips}>
+            <img src={downloadTips} alt=""/>
+          </div>
+        </ToastModal>
+      ):''}
     </>
 
   );

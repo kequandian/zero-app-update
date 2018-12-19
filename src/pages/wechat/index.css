@@ -59,3 +59,11 @@
   font-size: 1.25rem;
   color:#000000;
 }
+
+.showDownloadTips {
+  padding-left: 10%;
+}
+
+.showDownloadTips img{
+  width: 100%;
+}

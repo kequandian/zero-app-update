@@ -8,7 +8,8 @@ export default {
 
   state: {
     data: {},
-    islinkOfNull:false
+    islinkOfNull:false,
+    showDownloadTipsModal:false
   },
 
   subscriptions: {
