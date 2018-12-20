@@ -33,7 +33,7 @@ function Index ({ dispatch, loading = false, downloadPage }){
 
         }else{
           // const gwDownloadUrl = value.downloadUrl[0].url;
-          const gwDownloadUrl = 'http://120.79.77.207:8080/api/pub/download/apk'
+          const gwDownloadUrl = `${window.MC.HOST}/api/pub/download/apk`;
           dispatch({
             type:'downloadPage/downloadMetod',
             payload:{
