@@ -1,7 +1,7 @@
 //引入express中间件
 var express = require('express');
-var proxy = require('http-proxy-middleware');
-var compression = require('compression');
+// var proxy = require('http-proxy-middleware');
+// var compression = require('compression');
 var app = express();
 
 // 这里从环境变量读取配置，方便命令行启动
@@ -10,7 +10,7 @@ var app = express();
 const { HOST = 'http://120.79.77.207:8080', PORT = '8001' } = process.env;
 
 //指定启动服务器到哪个文件夹，我这边指的是dist文件夹
-app.use(express.static('./dist'));
+app.use(express.static('./api'));
 
 //启动压缩
 
@@ -24,11 +24,11 @@ app.use('/', express.static('./dist'));
 
 // 反向代理（这里把需要进行反代的路径配置到这里即可）
 // eg:将/api/test 代理到 ${HOST}/api/test
-app.use(proxy('/api', { target: HOST }));
+// app.use(proxy('/api', { target: HOST }));
 
 // req.body 解析
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // 监听端口
 app.listen(app.get('port'), () => {
