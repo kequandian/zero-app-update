@@ -4,7 +4,7 @@ const upload = require("../upload");
 const bodyParser = require('body-parser')
 
 // apk页详情
-app.get('/api/pub/apk/info', async (req, res) => {
+app.get('/api/pub/app/version', async (req, res) => {
     try{
         fs.readFileSync("../download.json", function(err, data) {
             if (err) {

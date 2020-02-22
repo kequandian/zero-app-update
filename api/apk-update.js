@@ -4,7 +4,7 @@ const upload = require("../upload");
 const bodyParser = require('body-parser')
 
 // apk页更新
-app.put('/api/pub/apk/info', async (req, res) => {
+app.put('/api/app/version', async (req, res) => {
     try{
         let config = fs.readFileSync("../download.json", function(err, data) {
             if (err) {
@@ -14,9 +14,7 @@ app.put('/api/pub/apk/info', async (req, res) => {
         config = JSON.parse(config);
         let updateData = req.body;
         for(let item in updateData) {
-            if(item != "baseUrl") {
-                config[item] = updateData[item];
-            }
+            config[item] = updateData[item];
         }
 
         fs.writeFile("../download.json", JSON.stringify(config), function(err, data) {
