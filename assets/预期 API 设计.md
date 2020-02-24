@@ -44,5 +44,5 @@ resopnse 具体字段:
 
 ## 额外需求
 
-应该同时提供标准的上传 api:  `/api/upload/files`, 以便处理 应用图片 url，安卓 apk 上传 等功能。
+应该同时提上传 api 以便处理 应用图片 url，安卓 apk 上传 等功能。
 
