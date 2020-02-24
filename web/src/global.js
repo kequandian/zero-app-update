@@ -60,7 +60,7 @@ golbalSet({
 
 
 if (process.env.NODE_ENV === 'development') {
-  setEndpoint('http://localhost:8001');
+  setEndpoint('http://localhost:8080');
 
   saveToken({
     token: '',
