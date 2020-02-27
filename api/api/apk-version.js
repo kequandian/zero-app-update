@@ -42,9 +42,20 @@ app.put('/api/versionCheck/version', async (req, res) => {
 		})
 });
 
-app.post('/api/versionCheck/upload', upload.single('apk'), async (req, res) => {
+app.post('/api/versionCheck/upload', upload.single('file'), async (req, res) => {
+	const configPath = path.join(__dirname, '../config.js')
+	delete require.cache[configPath];
+
+	const config = require(configPath);
+
 	if (req.file) {
-		res.json({ code: 200, data: req.file });
+		res.json({
+			code: 200,
+			data: {
+				url: `${config.outUrl}/${req.file.filename}`,
+				name: req.file.filename,
+			}
+		});
 		return;
 	} else {
 		res.json({ code: 400 });

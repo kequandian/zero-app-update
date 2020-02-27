@@ -10,7 +10,7 @@ export default function () {
 
   useEffect(_ => {
     window.onmessage = e => {
-      if (e.data) {
+      if (typeof e.data === 'string') {
         saveToken({
           token: e.data,
         });
@@ -18,7 +18,7 @@ export default function () {
       }
     };
     return _=> {
-      removeToken();
+      // removeToken();
     };
   }, []);
 

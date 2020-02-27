@@ -14,8 +14,6 @@ app.use(express.json());
 //指定启动服务器到哪个文件夹，我这边指的是dist文件夹
 app.use(express.static('./api'));
 
-//启动压缩
-
 
 // 设置端口
 app.set('port', PORT);

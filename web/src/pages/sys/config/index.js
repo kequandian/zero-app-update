@@ -7,6 +7,8 @@ module.exports = {
       component: 'BaseForm',
       config: {
         API: {
+          // getAPI: '/api/versionCheck/version',
+          // updateAPI: '/api/versionCheck/version',
           getAPI: '/api/v/api/versionCheck/version',
           updateAPI: '/api/v/api/versionCheck/version',
         },
@@ -14,6 +16,7 @@ module.exports = {
           {
             field: 'iconUrl', label: '应用封面', type: 'upload-image',
             options: {
+              API: '/api/versionCheck/upload',
               max: 1,
             }
           },
@@ -23,7 +26,11 @@ module.exports = {
             // rules: ['required']
           },
           {
-            field: 'pcDownloadUrl', label: '桌面端下载地址', type: 'input',
+            field: 'pcDownloadUrl', label: '桌面端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            }
           },
           {
             field: 'pcVersion', label: '桌面端版本', type: 'input',
@@ -47,7 +54,11 @@ module.exports = {
             field: 'mobileName', label: '移动端应用名称', type: 'input',
           },
           {
-            field: 'mobileDownloadUrl', label: '移动端下载地址', type: 'input',
+            field: 'mobileDownloadUrl', label: '移动端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            },
             expect: {
               expectedField: 'versionType',
               expectedValue: 'merge',
@@ -62,7 +73,11 @@ module.exports = {
           },
 
           {
-            field: 'APKDownloadUrl', label: '安卓端下载地址', type: 'input',
+            field: 'APKDownloadUrl', label: '安卓端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            },
             expect: {
               expectedField: 'versionType',
               expectedValue: 'apk',
@@ -76,7 +91,11 @@ module.exports = {
             }
           },
           {
-            field: 'IOSDownloadUrl', label: '苹果端下载地址', type: 'input',
+            field: 'IOSDownloadUrl', label: '苹果端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            },
             expect: {
               expectedField: 'versionType',
               expectedValue: 'ios',
