@@ -18,7 +18,7 @@ export default function () {
       }
     };
     return _=> {
-      // removeToken();
+      removeToken();
     };
   }, []);
 
