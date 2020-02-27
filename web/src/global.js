@@ -60,7 +60,8 @@ golbalSet({
 
 
 if (process.env.NODE_ENV === 'development') {
-  setEndpoint('http://localhost:8080');
+  // setEndpoint('http://localhost:8080');
+  setEndpoint('http://svcpaas.snscloud.cn:8383');
 
   saveToken({
     token: '',

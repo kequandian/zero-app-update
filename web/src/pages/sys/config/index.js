@@ -7,8 +7,8 @@ module.exports = {
       component: 'BaseForm',
       config: {
         API: {
-          getAPI: '/api/versionCheck/version',
-          updateAPI: '/api/versionCheck/version',
+          getAPI: '/api/v/api/versionCheck/version',
+          updateAPI: '/api/v/api/versionCheck/version',
         },
         fields: [
           {
