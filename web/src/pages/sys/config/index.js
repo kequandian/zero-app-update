@@ -130,6 +130,72 @@ module.exports = {
             field: 'mobileDescription', label: '更新描述', type: 'text-area',
             span: 16,
           },
+
+          {
+            field: 'group_3', type: 'group', value: '分发渠道',
+            span: 24,
+          },
+          {
+            field: 'items', label: '', type: 'one-mary', span: 24,
+            options: {
+              actions: [
+                {
+                  title: '新增渠道', type: 'children-modal-add', options: {
+                    modalTitle: '新增渠道',
+                    modalWidth: 580,
+                    items: [
+                      {
+                        layout: 'Empty',
+                        component: 'ChildrenForm',
+                        config: {
+                          layout: 'Grid',
+                          layoutConfig: {
+                            value: [12, 12],
+                          },
+                          API: {},
+                          fields: [
+                            {
+                              field: 'name', label: '渠道名', type: 'input',
+                              rules: ['required'],
+                            },
+                            {
+                              field: 'code', label: '渠道编码', type: 'input',
+                              rules: ['required'],
+                            },
+                            {
+                              field: 'version', label: '渠道版本', type: 'input',
+                              rules: ['required'],
+                            },
+
+                          ],
+                        },
+                      }
+                    ],
+                  }
+                },
+              ],
+              fields: [
+                {
+                  field: 'name', label: '渠道名',
+                },
+                {
+                  field: 'code', label: '渠道编码',
+                },
+                {
+                  field: 'version', label: '渠道版本',
+                },
+
+              ],
+              operation: [
+                {
+                  title: '移除', action: 'removeChild',
+                  options: {
+                    outside: true,
+                  }
+                },
+              ],
+            }
+          }
         ]
       }
     }

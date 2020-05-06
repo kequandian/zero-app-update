@@ -23,10 +23,15 @@ app.get('/api/versionCheck/version', async (req, res) => {
 app.put('/api/versionCheck/version', async (req, res) => {
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
-			let updateData = req.body;
+			const updateData = req.body;
+			const { items = [] } = updateData;
 			const data = {
 				...packageObj,
 				...updateData,
+				items: items.map(i => ({
+					...i,
+					id: i.code,
+				}))
 			};
 
 			return fs.writeJson(jsonPath, data)
@@ -36,6 +41,30 @@ app.put('/api/versionCheck/version', async (req, res) => {
 				.catch(err => {
 					res.json({ code: 400, message: err.message });
 				})
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
+// 获取渠道子项
+app.get('/api/versionCheck/version/vendor/:id', async (req, res) => {
+	const { id } = req.params;
+
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			const { items = [] } = packageObj;
+			const find = items.find(i => i.code === id);
+
+			let rst = {};
+			if (find) {
+				rst = find;
+			}
+
+			res.json({
+				code: 200,
+				data: rst,
+			});
 		})
 		.catch(err => {
 			res.json({ code: 400, message: err.message });
