@@ -7,11 +7,12 @@ const jsonPath = path.join(__dirname, 'download.json');
 
 // apk页详情
 app.get('/api/versionCheck/version', async (req, res) => {
+	const vendor = 'defaults';
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
 			res.json({
 				code: 200,
-				data: packageObj,
+				data: packageObj[vendor],
 			});
 		})
 		.catch(err => {
@@ -21,17 +22,16 @@ app.get('/api/versionCheck/version', async (req, res) => {
 
 // apk页更新
 app.put('/api/versionCheck/version', async (req, res) => {
+	const vendor = 'defaults';
+
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
 			const updateData = req.body;
-			const { items = [] } = updateData;
 			const data = {
 				...packageObj,
-				...updateData,
-				items: items.map(i => ({
-					...i,
-					id: i.code,
-				}))
+				[vendor]: {
+					...updateData,
+				}
 			};
 
 			return fs.writeJson(jsonPath, data)
@@ -53,13 +53,8 @@ app.get('/api/versionCheck/version/vendor/:id', async (req, res) => {
 
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
-			const { items = [] } = packageObj;
-			const find = items.find(i => i.code === id);
 
-			let rst = {};
-			if (find) {
-				rst = find;
-			}
+			const rst = packageObj[id] || {};
 
 			res.json({
 				code: 200,
@@ -70,6 +65,34 @@ app.get('/api/versionCheck/version/vendor/:id', async (req, res) => {
 			res.json({ code: 400, message: err.message });
 		})
 });
+
+// 更新渠道子项
+app.put('/api/versionCheck/version/vendor/:id', async (req, res) => {
+	const { id } = req.params;
+
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			const updateData = req.body;
+			const data = {
+				...packageObj,
+				[id]: {
+					...updateData,
+				}
+			};
+
+			return fs.writeJson(jsonPath, data)
+				.then(() => {
+					res.json({ code: 200 });
+				})
+				.catch(err => {
+					res.json({ code: 400, message: err.message });
+				})
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
 
 app.post('/api/versionCheck/upload', upload.single('file'), async (req, res) => {
 	const configPath = path.join(__dirname, '../config.js')
