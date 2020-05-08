@@ -36,7 +36,6 @@ app.get('/api/versionCheck/version', async (req, res) => {
 
 // 创建 新渠道
 app.post('/api/versionCheck/version', async (req, res) => {
-	const vendor = 'defaults';
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
 			const updateData = req.body;
@@ -44,7 +43,7 @@ app.post('/api/versionCheck/version', async (req, res) => {
 
 			const data = {
 				...packageObj,
-				[vendor]: {
+				[code]: {
 					id: code,
 					...updateData,
 				}
