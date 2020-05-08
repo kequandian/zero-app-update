@@ -5,7 +5,21 @@ const upload = require("../upload");
 
 const jsonPath = path.join(__dirname, 'download.json');
 
-// apk页详情
+// 渠道列表
+app.get('/api/versionCheck/version/list', async (req, res) => {
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			res.json({
+				code: 200,
+				data: Object.values(packageObj),
+			});
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
+// 获取 默认 apk页详情
 app.get('/api/versionCheck/version', async (req, res) => {
 	const vendor = 'defaults';
 	return fs.readJson(jsonPath)
@@ -20,7 +34,36 @@ app.get('/api/versionCheck/version', async (req, res) => {
 		})
 });
 
-// apk页更新
+// 创建 新渠道
+app.post('/api/versionCheck/version', async (req, res) => {
+	const vendor = 'defaults';
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			const updateData = req.body;
+			const { code } = updateData;
+
+			const data = {
+				...packageObj,
+				[vendor]: {
+					id: code,
+					...updateData,
+				}
+			};
+
+			return fs.writeJson(jsonPath, data)
+				.then(() => {
+					res.json({ code: 200 });
+				})
+				.catch(err => {
+					res.json({ code: 400, message: err.message });
+				})
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
+// 默认 apk页更新
 app.put('/api/versionCheck/version', async (req, res) => {
 	const vendor = 'defaults';
 
@@ -81,6 +124,31 @@ app.put('/api/versionCheck/version/vendor/:id', async (req, res) => {
 			};
 
 			return fs.writeJson(jsonPath, data)
+				.then(() => {
+					res.json({ code: 200 });
+				})
+				.catch(err => {
+					res.json({ code: 400, message: err.message });
+				})
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
+app.delete('/api/versionCheck/version/vendor/:id', async (req, res) => {
+	const { id } = req.params;
+
+	if (id === 'defaults') {
+		res.json({ code: 400, message: "默认渠道无法删除" });
+		return false;
+	}
+
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			delete packageObj[id];
+
+			return fs.writeJson(jsonPath, packageObj)
 				.then(() => {
 					res.json({ code: 200 });
 				})

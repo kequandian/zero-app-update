@@ -1,3 +1,7 @@
 {
-  "defaults": {}
+  "defaults": {
+    "id": "defaults",
+    "code": "defaults",
+    "name": "默认渠道"
+  }
 }

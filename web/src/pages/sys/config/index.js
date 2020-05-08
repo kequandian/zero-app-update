@@ -1,203 +1,39 @@
 module.exports = {
-  layout: 'EmptyTitle',
+  layout: 'Content',
   title: '版本管理',
   items: [
     {
-      layout: 'Content',
-      component: 'BaseForm',
+      layout: 'Empty',
+      component: 'BaseList',
       config: {
-        layout: 'Grid',
-        layoutConfig: {
-          value: [12, 12],
-        },
         API: {
-          // getAPI: '/api/versionCheck/version',
-          // updateAPI: '/api/versionCheck/version',
-          getAPI: '/api/v/api/versionCheck/version',
-          updateAPI: '/api/v/api/versionCheck/version',
+          listAPI: '/api/versionCheck/version/list',
+          deleteAPI: '/api/versionCheck/version/(id)'
         },
-        fields: [
+        actions: [
           {
-            field: 'iconUrl', label: '应用封面', type: 'upload-image',
+            title: '添加渠道', type: 'path',
             options: {
-              API: '/api/v/api/versionCheck/upload',
-              max: 1,
-            },
-            span: 24,
-          },
-          {
-            field: 'group_1', type: 'group', value: '桌面端',
-            span: 24,
-          },
-          {
-            field: 'pcName', label: '桌面端应用名称', type: 'input',
-            // rules: ['required']
-          },
-          {
-            field: 'pcDownloadUrl', label: '桌面端下载', type: 'upload-file',
-            options: {
-              API: '/api/v/api/versionCheck/upload',
-              max: 1,
-            },
-            span: 16,
-          },
-          {
-            field: 'pcVersion', label: '桌面端版本', type: 'input',
-          },
-          {
-            field: 'pcDescription', label: '桌面端更新描述', type: 'text-area',
-            span: 16,
-          },
-
-          {
-            field: 'group_2', type: 'group', value: '移动端',
-            span: 24,
-          },
-          {
-            field: 'versionType', label: '更新移动端目标', type: 'radio',
-            value: 'merge',
-            options: [
-              { label: '全部', value: 'merge' },
-              { label: '安卓', value: 'apk' },
-              { label: '苹果', value: 'ios' },
-            ],
-            span: 16,
-          },
-
-          {
-            field: 'mobileName', label: '移动端应用名称', type: 'input',
-          },
-          {
-            field: 'mobileDownloadUrl', label: '移动端下载', type: 'upload-file',
-            options: {
-              API: '/api/v/api/versionCheck/upload',
-              max: 1,
-            },
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'merge',
-            },
-            span: 16,
-          },
-          {
-            field: 'mobileVersion', label: '移动端版本', type: 'input',
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'merge',
-            }
-          },
-
-          {
-            field: 'APKDownloadUrl', label: '安卓端下载', type: 'upload-file',
-            options: {
-              API: '/api/v/api/versionCheck/upload',
-              max: 1,
-            },
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'apk',
-            },
-            span: 16,
-          },
-          {
-            field: 'apkVersion', label: '安卓端版本', type: 'input',
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'apk',
-            }
-          },
-          {
-            field: 'IOSDownloadUrl', label: '苹果端下载', type: 'upload-file',
-            options: {
-              API: '/api/v/api/versionCheck/upload',
-              max: 1,
-            },
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'ios',
-            },
-            span: 16,
-          },
-          {
-            field: 'iosVersion', label: '苹果端版本', type: 'input',
-            expect: {
-              expectedField: 'versionType',
-              expectedValue: 'ios',
-            }
-          },
-
-          {
-            field: 'mobileDescription', label: '更新描述', type: 'text-area',
-            span: 16,
-          },
-
-          {
-            field: 'group_3', type: 'group', value: '分发渠道',
-            span: 24,
-          },
-          {
-            field: 'items', label: '', type: 'one-mary', span: 24,
-            options: {
-              actions: [
-                {
-                  title: '新增渠道', type: 'children-modal-add', options: {
-                    modalTitle: '新增渠道',
-                    modalWidth: 580,
-                    items: [
-                      {
-                        layout: 'Empty',
-                        component: 'ChildrenForm',
-                        config: {
-                          layout: 'Grid',
-                          layoutConfig: {
-                            value: [12, 12],
-                          },
-                          API: {},
-                          fields: [
-                            {
-                              field: 'name', label: '渠道名', type: 'input',
-                              rules: ['required'],
-                            },
-                            {
-                              field: 'code', label: '渠道编码', type: 'input',
-                              rules: ['required'],
-                            },
-                            {
-                              field: 'version', label: '渠道版本', type: 'input',
-                              rules: ['required'],
-                            },
-
-                          ],
-                        },
-                      }
-                    ],
-                  }
-                },
-              ],
-              fields: [
-                {
-                  field: 'name', label: '渠道名',
-                },
-                {
-                  field: 'code', label: '渠道编码',
-                },
-                {
-                  field: 'version', label: '渠道版本',
-                },
-
-              ],
-              operation: [
-                {
-                  title: '移除', action: 'removeChild',
-                  options: {
-                    outside: true,
-                  }
-                },
-              ],
+              path: '/sys/version-add',
             }
           }
+        ],
+        fields: [
+          { label: '渠道名', field: 'name', },
+          { label: '渠道编码', field: 'id', },
+          { label: '渠道版本', field: 'version', },
+        ],
+        operation: [
+          {
+            title: '编辑', action: 'path',
+            options: {
+              outside: true,
+              path: '/sys/version-edit',
+            },
+          },
+          { title: '删除', action: 'delete' }
         ]
-      }
+      },
     }
   ]
 }
