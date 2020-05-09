@@ -8,7 +8,7 @@ module.exports = {
       config: {
         API: {
           listAPI: '/api/versionCheck/version/list',
-          deleteAPI: '/api/versionCheck/version/(id)'
+          deleteAPI: '/api/versionCheck/version/vendor/(id)'
         },
         actions: [
           {

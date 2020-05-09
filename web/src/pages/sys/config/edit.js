@@ -13,8 +13,8 @@ module.exports = {
         API: {
           // getAPI: '/api/versionCheck/version',
           // updateAPI: '/api/versionCheck/version',
-          getAPI: '/api/v/api/versionCheck/version',
-          updateAPI: '/api/v/api/versionCheck/version',
+          getAPI: '/api/v/api/versionCheck/version/vendor/[id]',
+          updateAPI: '/api/v/api/versionCheck/version/vendor/[id]',
         },
         fields: [
           {

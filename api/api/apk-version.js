@@ -115,9 +115,13 @@ app.put('/api/versionCheck/version/vendor/:id', async (req, res) => {
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
 			const updateData = req.body;
+
+			delete packageObj[id];
+
 			const data = {
 				...packageObj,
 				[id]: {
+					id: id,
 					...updateData,
 				}
 			};
