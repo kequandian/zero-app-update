@@ -44,8 +44,8 @@ app.post('/api/versionCheck/version', async (req, res) => {
 			const data = {
 				...packageObj,
 				[code]: {
-					id: code,
 					...updateData,
+					id: code,
 				}
 			};
 
@@ -121,8 +121,8 @@ app.put('/api/versionCheck/version/vendor/:id', async (req, res) => {
 			const data = {
 				...packageObj,
 				[updateData.code]: {
-					id: updateData.code,
 					...updateData,
+					id: updateData.code,
 				}
 			};
 
