@@ -120,8 +120,8 @@ app.put('/api/versionCheck/version/vendor/:id', async (req, res) => {
 
 			const data = {
 				...packageObj,
-				[id]: {
-					id: id,
+				[updateData.code]: {
+					id: updateData.code,
 					...updateData,
 				}
 			};
