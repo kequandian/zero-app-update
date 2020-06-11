@@ -21,7 +21,6 @@ module.exports = {
         fields: [
           { label: '渠道名', field: 'name', },
           { label: '渠道编码', field: 'id', },
-          { label: '渠道版本', field: 'version', },
         ],
         operation: [
           {

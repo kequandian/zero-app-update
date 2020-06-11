@@ -22,10 +22,6 @@ module.exports = {
             field: 'code', label: '渠道编码', type: 'input',
             rules: ['required'],
           },
-          {
-            field: 'version', label: '渠道版本', type: 'input',
-            rules: ['required'],
-          },
 
           {
             field: 'iconUrl', label: '应用封面', type: 'upload-image',
