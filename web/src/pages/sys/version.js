@@ -6,7 +6,7 @@ import useIframeToken from '../utils/useIframeToken';
 export default function () {
   const [token] = useIframeToken();
 
-  return tok1en ?
+  return token ?
     <Zele
       namespace="version"
       config={config}
