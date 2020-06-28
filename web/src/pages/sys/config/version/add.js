@@ -126,6 +126,47 @@ module.exports = {
           {
             field: 'mobileDescription', label: '更新描述', type: 'text-area',
           },
+
+          {
+            field: 'group_3', type: 'group', value: '大屏端',
+          },
+          {
+            field: 'fullScreenName', label: '大屏端应用名称', type: 'input',
+          },
+          {
+            field: 'fullScreenDownloadUrl', label: '大屏端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            },
+          },
+          {
+            field: 'fullScreenVersion', label: '大屏端版本', type: 'input',
+          },
+          {
+            field: 'fullScreenDescription', label: '大屏端更新描述', type: 'text-area',
+          },
+
+
+          {
+            field: 'group_3', type: 'group', value: '中台端',
+          },
+          {
+            field: 'controlName', label: '中台端应用名称', type: 'input',
+          },
+          {
+            field: 'controlDownloadUrl', label: '中台端下载', type: 'upload-file',
+            options: {
+              API: '/api/versionCheck/upload',
+              max: 1,
+            },
+          },
+          {
+            field: 'controlVersion', label: '中台端版本', type: 'input',
+          },
+          {
+            field: 'controlDescription', label: '中台端更新描述', type: 'text-area',
+          },
         ]
       }
     }
