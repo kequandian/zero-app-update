@@ -5,12 +5,15 @@ const upload = require("./upload");
 
 const jsonPath = path.join(__dirname, 'apk/download.json');
 
-app.get('/api/apk/updatecheck', async (req, res) => {
+app.post('/api/apk/updatecheck', async (req, res) => {
 	return fs.readJson(jsonPath)
 		.then(packageObj => {
+			const reqData = req.body;
+			const { version, package} = reqData;
+
 			res.json({
 				code: 200,
-				data: packageObj,
+				data: {...packageObj, lastVersion: version, packageName: package},
 			});
 		})
 		.catch(err => {
