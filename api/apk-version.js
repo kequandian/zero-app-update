@@ -1,9 +1,23 @@
 const fs = require('fs-extra');
 const path = require('path');
-const app = require('../sevice');
-const upload = require("../upload");
+const app = require('./sevice');
+const upload = require("./upload");
 
-const jsonPath = path.join(__dirname, 'download.json');
+const jsonPath = path.join(__dirname, 'apk/download.json');
+
+app.get('/api/newconf/client/updatecheck', async (req, res) => {
+	return fs.readJson(jsonPath)
+		.then(packageObj => {
+			res.json({
+				code: 200,
+				data: Object.values(packageObj),
+			});
+		})
+		.catch(err => {
+			res.json({ code: 400, message: err.message });
+		})
+});
+
 
 // 渠道列表
 app.get('/api/versionCheck/version/list', async (req, res) => {
